@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test2</string>
+    <string name="app_name">Tic-Tac-Toe</string>
     <string name="TicTacToeHeading">Tic tac toe</string>
     <string name="retry">Retry</string>
     <string name="box">Box description</string>

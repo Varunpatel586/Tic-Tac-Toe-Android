@@ -63,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
                     retryButton.setVisibility(View.VISIBLE);
                 }
             }
+            if(gameState[0]==2 &&gameState[1]==2 && gameState[2]==2 && gameState[3]==2
+                    && gameState[4]==2 && gameState[5]==2 && gameState[6]==2
+                    && gameState[7]==2 && gameState[8]==2){
+                status.setText("Tie!");
+                gameStatus=false;
+            }
         } else {
             status.setText("Select a valid place!");
         }

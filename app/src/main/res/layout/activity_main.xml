@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F6F6"
+    android:background="@color/ic_launcher__background"
     android:visibility="visible"
     tools:context=".MainActivity">
 
@@ -19,7 +19,7 @@
         android:layout_marginTop="36dp"
         android:paddingTop="30dp"
         android:text="@string/TicTacToeHeading"
-        android:textColor="#49454F"
+        android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -204,6 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:tag="8"
+        android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -217,6 +218,7 @@
         android:layout_height="wrap_content"
         android:onClick="retry"
         android:text="@string/retry"
+        android:textColorLink="#172AA0"
         android:textSize="48sp"
         android:visibility="invisible"
         app:iconSize="20dp"
