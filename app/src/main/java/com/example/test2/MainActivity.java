@@ -29,48 +29,56 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void PlayerTap(View view) {
-        if (!gameStatus) {
-            retryButton.setVisibility(View.VISIBLE);
-            return; // Block further moves if game ended
-        }
-
         ImageView img = (ImageView) view;
         int tappedImage = Integer.parseInt(img.getTag().toString());
+
         TextView status = findViewById(R.id.Bottom_Text);
 
-        if (gameState[tappedImage] == 2) {
-            gameState[tappedImage] = activePlayer;
+        // Block further taps after game ends
+        if (!gameStatus || gameState[tappedImage] != 2) {
+            status.setText("Tap retry to play again!");
+            return;
+        }
 
-            if (activePlayer == 0) {
-                img.setImageResource(R.drawable.o);
-                activePlayer = 1;
-                status.setText("X Player Turn");
-            } else {
-                img.setImageResource(R.drawable.x);
-                activePlayer = 0;
-                status.setText("O Player Turn");
-            }
+        gameState[tappedImage] = activePlayer;
 
-            // Check for win
-            for (int[] winPosition : winPositions) {
-                if (gameState[winPosition[0]] == gameState[winPosition[1]] &&
-                        gameState[winPosition[1]] == gameState[winPosition[2]] &&
-                        gameState[winPosition[0]] != 2) {
-
-                    gameStatus = false;
-                    String winnerStr = (gameState[winPosition[0]] == 0) ? "O has won!" : "X has won!";
-                    status.setText(winnerStr);
-                    retryButton.setVisibility(View.VISIBLE);
-                }
-            }
-            if(gameState[0]==2 &&gameState[1]==2 && gameState[2]==2 && gameState[3]==2
-                    && gameState[4]==2 && gameState[5]==2 && gameState[6]==2
-                    && gameState[7]==2 && gameState[8]==2){
-                status.setText("Tie!");
-                gameStatus=false;
-            }
+        if (activePlayer == 0) {
+            img.setImageResource(R.drawable.o);
+            activePlayer = 1;
+            status.setText("X Player Turn");
         } else {
-            status.setText("Select a valid place!");
+            img.setImageResource(R.drawable.x);
+            activePlayer = 0;
+            status.setText("O Player Turn");
+        }
+
+        // Check for win
+        for (int[] winPosition : winPositions) {
+            if (gameState[winPosition[0]] == gameState[winPosition[1]] &&
+                    gameState[winPosition[1]] == gameState[winPosition[2]] &&
+                    gameState[winPosition[0]] != 2) {
+
+                gameStatus = false;
+                String winnerStr = (gameState[winPosition[0]] == 0) ? "O has won!" : "X has won!";
+                status.setText(winnerStr);
+                retryButton.setVisibility(View.VISIBLE);
+                return;
+            }
+        }
+
+        // Check for tie
+        boolean tie = true;
+        for (int state : gameState) {
+            if (state == 2) {
+                tie = false;
+                break;
+            }
+        }
+
+        if (tie) {
+            gameStatus = false;
+            status.setText("It's a Tie!");
+            retryButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -85,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         GridLayout gridLayout = findViewById(R.id.gridLayout);
         for (int i = 0; i < gridLayout.getChildCount(); i++) {
             ImageView box = (ImageView) gridLayout.getChildAt(i);
-            box.setImageDrawable(null);
+            box.setImageDrawable(null); // Clear all images
         }
 
         TextView status = findViewById(R.id.Bottom_Text);
@@ -100,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        retryButton = findViewById(R.id.retry); // Connect retry button
+        retryButton = findViewById(R.id.retry); // Link the retry button
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
