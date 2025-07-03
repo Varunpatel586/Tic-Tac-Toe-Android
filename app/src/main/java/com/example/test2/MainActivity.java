@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.view.View;
+
 public class MainActivity extends AppCompatActivity {
     Button retryButton;
     boolean gameStatus = true;
