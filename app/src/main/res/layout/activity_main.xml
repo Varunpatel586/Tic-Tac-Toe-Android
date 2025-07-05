@@ -12,6 +12,15 @@
     <!-- Heading -->
 
     <!-- Grid Image (Full width, square) -->
+    <ImageView
+        android:id="@+id/homeButton"
+        android:layout_width="79dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_arrow" />
+
     <TextView
         android:id="@+id/Heading"
         android:layout_width="wrap_content"
@@ -41,6 +50,7 @@
         tools:ignore="ContentDescription" />
 
     <!-- Overlayed 3x3 Grid of Boxes -->
+
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="0dp"
@@ -71,8 +81,6 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <!-- Box 1 -->
-
-        <!-- Box 2 -->
         <ImageView
             android:id="@+id/box1"
             android:layout_width="0dp"
@@ -90,6 +98,7 @@
             android:tag="1"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
+        <!-- Box 2 -->
         <ImageView
             android:id="@+id/box2"
             android:layout_width="0dp"
@@ -231,14 +240,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Bottom_Text"
         app:layout_constraintVertical_bias="0.333" />
-
-    <ImageView
-        android:id="@+id/homeButton"
-        android:layout_width="79dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_arrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
